@@ -1,0 +1,471 @@
+/* CSS Reset */
+/* 1. Use a more-intuitive box-sizing model */
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+/* 2. Remove default margin */
+*:not(dialog) {
+	margin: 0;
+}
+
+/* 3. Enable keyword animations */
+@media (prefers-reduced-motion: no-preference) {
+	html {
+		interpolate-size: allow-keywords;
+	}
+}
+
+body {
+	/* 4. Add accessible line-height */
+	line-height: 1.5;
+	/* 5. Improve text rendering */
+	-webkit-font-smoothing: antialiased;
+}
+
+/* 6. Improve media defaults */
+img,
+picture,
+video,
+canvas,
+svg {
+	display: block;
+	max-width: 100%;
+}
+
+/* 7. Inherit fonts for form controls */
+input,
+button,
+textarea,
+select {
+	font: inherit;
+}
+
+/* 8. Avoid text overflows */
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	overflow-wrap: break-word;
+}
+
+/* 9. Improve line wrapping */
+p {
+	text-wrap: pretty;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	text-wrap: balance;
+}
+
+/*
+  10. Create a root stacking context
+*/
+#root,
+#__next {
+	isolation: isolate;
+}
+/* Variables */
+:root {
+	/* === Colors === */
+
+	/* Primary */
+	--green-200: hsl(148, 38%, 91%);
+	--green-600: hsl(169, 82%, 27%);
+	--red-500: hsl(0, 66%, 54%);
+
+	/* Neutral */
+	--white: hsl(0, 0%, 100%);
+	--grey-500: hsl(186, 15%, 59%);
+	--grey-900: hsl(187, 24%, 22%);
+
+	/* === Spacing === */
+	--space-100: 0.8rem; /* 8px */
+	--space-150: 1.2rem; /* 12px */
+	--space-200: 1.6rem; /* 16px */
+	--space-300: 2.4rem; /* 24px */
+	--space-400: 3.2rem; /* 32px */
+	--space-500: 4rem; /* 40px */
+	--space-1600: 12.8rem; /* 128px */
+
+	/* === Typography === */
+
+	--ff-primary: "Karla", sans-serif;
+
+	/* Font Weights */
+	--fw-regular: 400;
+	--fw-bold: 700;
+
+	/* === Text Presets (Font Shorthand) === */
+
+	/* Heading — 32px Bold */
+	--tp-heading-font: var(--fw-bold) 3.2rem / 1 var(--ff-primary);
+	--tp-heading-ls: -0.1rem; /* -1px */
+
+	/* Body MD Bold — 18px */
+	--tp-body-md-bold-font: var(--fw-bold) 1.8rem / 1.5 var(--ff-primary);
+	--tp-body-md-bold-ls: 0;
+
+	/* Body MD Regular — 18px */
+	--tp-body-md-regular-font: var(--fw-regular) 1.8rem / 1.5 var(--ff-primary);
+	--tp-body-md-regular-ls: 0;
+
+	/* Body SM — 16px */
+	--tp-body-sm-font: var(--fw-regular) 1.6rem / 1.5 var(--ff-primary);
+	--tp-body-sm-ls: 0;
+}
+html {
+	font-size: 62.5%;
+}
+
+body {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background: var(--green-200);
+	min-height: 100vh;
+	padding: var(--space-400) var(--space-200);
+	font-size: 1.6rem;
+	font: var(--ff-primary);
+}
+.container {
+	background: var(--white);
+	padding: var(--space-300);
+	border-radius: var(--space-200);
+	/* width: 100%; */
+	width: 34.3rem;
+
+	display: flex;
+	flex-direction: column;
+	position: relative;
+}
+.container {
+	width: 100%;
+	max-width: 45.3rem;
+}
+
+h1 {
+	font: var(--tp-heading-font);
+	letter-spacing: var(--tp-heading-ls);
+	color: var(--grey-900);
+	margin-bottom: var(--space-400);
+}
+
+.fields {
+	display: flex;
+	flex-direction: column;
+	gap: var(--space-300);
+}
+/* all text fields */
+.text-field {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	gap: var(--space-100);
+}
+.text-field label,
+.radio-field label {
+	color: var(--grey-900);
+	font: var(--tp-body-sm-font);
+	letter-spacing: var(--tp-body-sm-ls);
+}
+.side-by-side {
+	display: flex;
+	flex-direction: column;
+	gap: var(--space-300);
+}
+
+input[type="text"],
+input[type="email"],
+textarea,
+.radio-field .radio-option {
+	padding: var(--space-150) var(--space-300);
+	border-radius: var(--space-100);
+	border: 1px solid var(--grey-500);
+	/* outline: none; */
+	font: var(--tp-body-md-regular-font);
+	letter-spacing: var(--tp-body-md-regular-ls);
+	color: var(--grey-900);
+}
+textarea {
+	resize: none;
+}
+
+.radio-field {
+	display: flex;
+	flex-direction: column;
+	gap: var(--space-200);
+}
+.radio-options {
+	display: flex;
+	flex-direction: column;
+	gap: var(--space-200);
+}
+.radio-option {
+	display: flex;
+	align-items: center;
+	gap: var(--space-150);
+	cursor: pointer;
+	width: 100%;
+}
+.radio-option input {
+	width: 2rem;
+	height: 2rem;
+}
+.radio-option:hover {
+	border-color: var(--green-600);
+}
+
+/* NOTE  This feature to change the color of the radio button */
+input[type="radio"]:checked {
+	accent-color: var(--green-600);
+}
+
+/*  NOTE this is the way to change the parent properties when event happen
+to a child element  using has */
+.radio-option:has(input[type="radio"]:checked) {
+	background: var(--green-200);
+	border-color: var(--green-600);
+}
+
+/* checkbox field */
+.checkbox-field {
+	margin-block: var(--space-500);
+	display: flex;
+	flex-direction: column;
+	gap: var(--space-200);
+}
+.checkbox-row {
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
+	gap: var(--space-200);
+}
+.checkbox-field .checkbox-row input {
+	margin-block: auto;
+	display: block;
+}
+
+.checkbox-field label {
+	color: var(--grey-900);
+	font: var(--tp-body-sm-font);
+	letter-spacing: var(--tp-body-sm-ls);
+}
+
+button {
+	padding: var(--space-200) var(--space-500);
+	font: var(--tp-body-md-bold-font);
+	letter-spacing: var(--tp-body-md-bold-ls);
+	background: var(--green-600);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border-radius: var(--space-100);
+	color: white;
+	border: none;
+	width: 100%;
+	cursor: pointer;
+}
+button:hover,
+button:active,
+button:focus {
+	background: #063f34;
+}
+/* 
+Add * after required labels
+*/
+label:has(+ input[required])::after,
+label:has(+ textarea[required])::after,
+.radio-field:has(input[type="radio"][required]) > label::after,
+.checkbox-row:has(input[type="checkbox"][required]) > label::after {
+	content: "*";
+	color: var(--green-600);
+	margin-left: var(--space-100);
+}
+.hidden {
+	display: none;
+}
+/* NOTE HOw to add custom style using svg to the checkcbox */
+input[type="checkbox"] {
+	/* 1. Remove default styling */
+	-webkit-appearance: none;
+	appearance: none;
+
+	/* 2. Style the box */
+	width: 22px;
+	height: 22px;
+	border: 2px solid var(--grey-500); /* Use your Grey 200 variable */
+	border-radius: 4px;
+	background-color: var(--white);
+	cursor: pointer;
+	display: inline-block;
+	position: relative;
+	transition: border-color 0.2s ease;
+	flex-shrink: 0;
+	accent-color: var(--green-600);
+}
+
+/*  NOTE 3. Style when Checked */
+input[type="checkbox"]:checked {
+	border-color: var(--green-600);
+
+	/* Change the background of the box itself to green */
+	background-color: var(--white);
+
+	/* 4. Insert your SVG */
+	background-image: url(assets/images/icon-checkbox-check.svg);
+	background-repeat: no-repeat;
+	background-position: center;
+
+	/* Change 'cover' to 'contain' or a specific size */
+	/* This prevents the SVG from bleeding into the border area */
+	background-size: 19px;
+}
+
+label {
+	cursor: pointer;
+}
+input[type="text"]:hover,
+input[type="email"]:hover {
+	cursor: pointer;
+}
+input[type="text"]:focus,
+input[type="text"]:active,
+input[type="email"]:focus,
+input[type="email"]:active {
+	cursor: pointer;
+	border-color: var(--green-600);
+}
+
+.error-state {
+	border-color: var(--red-500) !important;
+}
+.error-message {
+	color: var(--red-500);
+	font: var(--tp-body-sm-font);
+	letter-spacing: var(--tp-body-sm-ls);
+}
+
+/* MODAL */
+.modal {
+	/* margin: var(--space-300); */
+	padding: var(--space-300);
+	border-radius: var(--space-150);
+	background: var(--grey-900);
+	color: white;
+
+	width: 88%;
+	max-width: calc(54.3rem * 0.8);
+
+	position: fixed;
+	top: 24px;
+	left: 50%;
+	transform: translateX(-50%);
+	z-index: 1000;
+	top: 24px;
+
+	display: none;
+}
+.modal > p {
+	font: var(--tp-body-sm-font);
+	letter-spacing: var(--tp-body-sm-ls);
+}
+.modal .confirmation {
+	display: flex;
+	gap: var(--space-100);
+	margin-bottom: var(--space-100);
+}
+.modal .confirmation p {
+	font: var(--tp-body-md-bold-font);
+	letter-spacing: var(--tp-body-md-bold-ls);
+}
+
+/* This class triggers the exit */
+/* Fix 1: Change display from 'none' to 'block' so the animation can play */
+.modal.hide {
+	display: block;
+	animation: slideUp 0.4s ease-in forwards;
+}
+.modal.show {
+	display: block;
+	animation: slideDown 0.4s ease-out forwards;
+}
+
+/* Fix 2: Reverse the values so it actually slides AWAY */
+@keyframes slideUp {
+	from {
+		opacity: 1;
+		transform: translate(-50%, 0);
+	}
+	to {
+		opacity: 0;
+		transform: translate(-50%, -100%);
+	}
+}
+
+/* Keep slideDown as it was */
+@keyframes slideDown {
+	from {
+		opacity: 0;
+		transform: translate(-50%, -100%);
+	}
+	to {
+		opacity: 1;
+		transform: translate(-50%, 0);
+	}
+}
+
+.hidden {
+	display: none;
+}
+@media (min-width: 768px) {
+	body {
+		padding-block: 12.8rem;
+	}
+	.container {
+		max-width: 69rem;
+		width: 100%;
+		padding: var(--space-500);
+		/* margin-inline: auto; */
+	}
+	.radio-options {
+		flex-direction: row;
+	}
+	.side-by-side {
+		display: flex;
+		flex-direction: row;
+		gap: var(--space-200);
+	}
+	textarea {
+		height: 13.2rem;
+	}
+	.modal {
+		max-width: 49.8rem;
+		transform: translate(-50%);
+	}
+}
+@media (min-width: 1440px) {
+	body {
+		padding-block: var(--space-1600);
+	}
+	.container {
+		max-width: 73.6rem;
+		width: 100%;
+	}
+	textarea {
+		height: 10.5rem;
+	}
+}
+input:focus,
+textarea:focus {
+	outline-color: var(--green-600);
+}
