@@ -197,7 +197,7 @@ textarea,
 	color: var(--grey-900);
 }
 textarea {
-	resize: none;
+	resize: vertical;
 }
 
 .radio-field {
@@ -285,11 +285,14 @@ Add * after required labels
 */
 label:has(+ input[required])::after,
 label:has(+ textarea[required])::after,
-.radio-field:has(input[type="radio"][required]) > label::after,
-.checkbox-row:has(input[type="checkbox"][required]) > label::after {
+.radio-field:has(input[type="radio"][required]) > label::after {
 	content: "*";
 	color: var(--green-600);
 	margin-left: var(--space-100);
+}
+.checkbox-row:has(input[type="checkbox"][required]) > label::after {
+	content: "*";
+	color: var(--green-600);
 }
 .hidden {
 	display: none;
